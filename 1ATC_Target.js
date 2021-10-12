@@ -62,7 +62,7 @@ window.gibinit = function() {
     fetch(cartUrl, { method: 'POST', mode: 'cors', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cart) })
     .then(function(response) {
       window.gibAttempts++;
-      if (response.status >= 200 && response.status < 300) return response;
+      if (response.status >= 200 && response.status < 300) return window.location.replace('https://www.target.com/co-review?precheckout=true');
       else if (response.status == 401) return 'AUTH';
       return false;
     }).then(function(response) {
@@ -87,7 +87,7 @@ window.gibinit = function() {
       } else {
         window.gibSoundTrigger(0, true);
         window.gibWatcherDisable();
-        window.location.replace('https://www.target.com/co-review');
+        window.location.replace('https://www.target.com/co-review?precheckout=true');
       }
     });
   }
@@ -272,8 +272,8 @@ window.gibinit = function() {
           window.gibAttemptSecondsLeft = GIB.refreshSeconds;
           GIB.addToCart(DEBUG_NODE, GIB.PRODUCT_UPC);
         }
-      }, 1000);
-    }, 1000);
+      }, 350);
+    }, 350);
   }
 
   function stopWatcher(DEBUG_NODE) {
@@ -412,7 +412,7 @@ window.gibinit = function() {
   continueButton.innerText = 'CONTINUE';
   continueButton.onclick = function() {
     if (window.gibRetailer == 'target') {
-      window.location.replace('https://www.target.com/co-review');
+      window.location.replace('https://www.target.com/co-review?precheckout=true');
     } else if (window.gibRetailer == 'gamestop') {
       window.location.replace('https://www.gamestop.com/checkout');
     }
